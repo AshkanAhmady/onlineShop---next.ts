@@ -38,6 +38,10 @@ export interface SingleCategory {
   _id: string;
 }
 
+export interface CategoryListPropsType {
+  categoryData: SingleCategory[];
+}
+
 export interface indexPropsType {
   blogsData: {
     docs: SingleBlogType[];
