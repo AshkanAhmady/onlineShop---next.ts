@@ -4,6 +4,7 @@ import DesktopCategory from '@/components/blogs/DesktopCategory'
 import MobileCategory from '@/components/blogs/MobileCategory'
 import DesktopSortBar from '@/components/blogs/DesktopSortBar'
 import BlogList from '@/components/blogs/BlogList'
+import queryString from 'query-string'
 
 const BlogsPage = ({ blogsData, categoryData }: indexPropsType) => {
 
@@ -20,7 +21,7 @@ const BlogsPage = ({ blogsData, categoryData }: indexPropsType) => {
                     <div className='hidden md:block md:col-span-9'>
                         <DesktopSortBar />
                     </div>
-                    <div className=' md:col-span-9 grid gap-8 grid-cols-6'>
+                    <div className=' md:col-span-9 grid items-start gap-8 grid-cols-6'>
                         <BlogList blogsData={blogsData} />
                     </div>
                 </div>
@@ -31,8 +32,10 @@ const BlogsPage = ({ blogsData, categoryData }: indexPropsType) => {
 
 export default BlogsPage
 
-export async function getServerSideProps() {
-    const { data: blogsData } = await axios.get("http://localhost:5000/api/posts?page=1&limit=6")
+export async function getServerSideProps(ctx: any) {
+    const { query } = ctx
+    const querys = queryString.stringify(query)
+    const { data: blogsData } = await axios.get(`http://localhost:5000/api/posts?${querys}`)
     const { data: categoryData } = await axios.get("http://localhost:5000/api/post-category")
 
     return {

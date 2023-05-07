@@ -4,6 +4,7 @@ import DesktopCategory from '@/components/blogs/DesktopCategory'
 import MobileCategory from '@/components/blogs/MobileCategory'
 import DesktopSortBar from '@/components/blogs/DesktopSortBar'
 import BlogList from '@/components/blogs/BlogList'
+import queryString from 'query-string'
 
 const CategoryPage = ({ blogsData, categoryData }: indexPropsType) => {
 
@@ -32,8 +33,9 @@ const CategoryPage = ({ blogsData, categoryData }: indexPropsType) => {
 export default CategoryPage
 
 export async function getServerSideProps(ctx: any) {
-    const { params } = ctx
-    const { data: blogsData } = await axios.get(`http://localhost:5000/api/posts?page=1&limit=6&categorySlug=${params.categorySlug}`)
+    const { query } = ctx
+    const querys = queryString.stringify(query)
+    const { data: blogsData } = await axios.get(`http://localhost:5000/api/posts?${querys}`)
     const { data: categoryData } = await axios.get("http://localhost:5000/api/post-category")
 
     return {

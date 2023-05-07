@@ -14,7 +14,7 @@ const BlogList: React.FC<BlogListPropsType> = ({ blogsData }) => {
                         </div>
                         {/* blog content */}
                         <div className='bg-gray-50 flex-1 justify-between p-2 rounded-2xl flex flex-col gap-3'>
-                            <h2 className='font-bold'>{blog.title}</h2>
+                            <h2 className='font-bold mb-2'>{blog.title}</h2>
                             <div>
                                 <div className='flex items-center mb-2 justify-between'>
                                     <div className='flex items-center justify-between'>

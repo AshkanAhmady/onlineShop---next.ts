@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { CategoryListPropsType } from 'src/types';
 
 const DesktopCategory = ({ categoryData }: CategoryListPropsType) => {
-    const [isShowCategories, setIsShowCategories] = useState<boolean>(false)
+    const [isShowCategories, setIsShowCategories] = useState<boolean>(true)
 
     return (
         <div className='bg-purple-400 overflow-hidden rounded-3xl'>
