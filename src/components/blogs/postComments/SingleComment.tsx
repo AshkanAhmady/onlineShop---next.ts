@@ -14,7 +14,7 @@ const SingleComment = ({ comment }: CommentPropsType) => {
     }, [comment])
 
     return (
-        <div className="border rounded-xl border-gray-300 mt-8 p-4 md:p-8 ">
+        <div className="border shadow-md rounded-xl border-gray-300 mt-8 p-4 md:p-8 ">
             <div className="flex items-center justify-start gap-x-4 ">
                 <UserCircleIcon className="h-12 w-12 stroke-gray-400" strokeWidth={1} />
                 <div className="flex flex-col justify-between mr-4">

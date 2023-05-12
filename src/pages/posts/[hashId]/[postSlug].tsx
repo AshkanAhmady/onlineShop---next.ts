@@ -29,7 +29,7 @@ const SinglePostPage = ({ post }: SinglePostPropsType) => {
 
     return (
         <div className="bg-gray-50 min-h-screen">
-            <div className="md:max-w-screen-lg container mx-auto">
+            <div className="md:max-w-screen-lg mb-20 container mx-auto">
                 <header className="flex md:max-w-screen-md flex-col md:flex-row gap-y-5 md:justify-between md:items-start mb-12 mx-auto">
                     {/* author data */}
                     <div className="flex items-stretch">

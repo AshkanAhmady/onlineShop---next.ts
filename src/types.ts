@@ -1,3 +1,9 @@
+import {
+  FieldValues,
+  UseFormHandleSubmit,
+  UseFormRegister,
+} from "react-hook-form";
+
 export interface SingleBlogType {
   status: number;
   commentsCount: number;
@@ -95,4 +101,40 @@ export interface PostInteractionsPropsType {
 
 export interface CommentPropsType {
   comment: SingleCommentType;
+}
+
+export interface LoginHookFormType {
+  register: UseFormRegister<FieldValues>;
+  handleSubmit: UseFormHandleSubmit<any>;
+  formState:
+    | {
+        errors: {
+          email?: { message: string; type: string; ref: HTMLInputElement };
+          password?: { message: string; type: string; ref: HTMLInputElement };
+        };
+        isValid: boolean;
+      }
+    | {
+        errors: any;
+        isValid: boolean;
+      };
+}
+
+// export interface RegisterDataType {
+//   confirmPassword?: string;
+//   email: string;
+//   password: string;
+// }
+
+export interface LoginDataType {
+  email: string;
+  password: string;
+}
+
+export interface InputPropsType {
+  label: string;
+  name: string;
+  type: string;
+  error: string;
+  validation: any;
 }

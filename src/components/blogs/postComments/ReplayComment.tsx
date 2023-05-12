@@ -2,8 +2,6 @@ import SingleComment from "./SingleComment";
 
 const ReplayComment = ({ comments, parrentCommentId }: any) => {
 
-    console.log(comments)
-
     return comments.map((comment: any) => {
         return (
             parrentCommentId === comment.responseTo && (

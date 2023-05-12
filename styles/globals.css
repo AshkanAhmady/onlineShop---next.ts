@@ -5,3 +5,9 @@
 * {
   font-family: Vazirmatn;
 }
+
+button:disabled {
+  background: #ddd;
+  color: #444;
+  cursor: not-allowed;
+}
