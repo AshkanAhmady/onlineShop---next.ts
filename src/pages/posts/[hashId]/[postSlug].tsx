@@ -1,4 +1,3 @@
-import axios from "axios";
 import { SinglePostPropsType } from "src/types";
 import { LinkIcon, BookmarkIcon } from '@heroicons/react/24/outline'
 import { BookmarkIcon as SolideBookmarkIcon } from '@heroicons/react/24/solid'
@@ -11,6 +10,7 @@ import { MdContentCopy } from "react-icons/md"
 import CopyToClipboard from "react-copy-to-clipboard";
 import BlogList from "@/components/blogs/BlogList";
 import PostComments from "@/components/blogs/postComments";
+import http from "@/services/httpService";
 
 const SinglePostPage = ({ post }: SinglePostPropsType) => {
     const [persianTime, setPersianTime] = useState<string | null>(null)
@@ -141,9 +141,8 @@ export default SinglePostPage;
 
 export async function getServerSideProps(ctx: any) {
     const { query } = ctx
-    const { data } = await axios.get(`http://localhost:5000/api/posts/${query.postSlug}`, {
+    const { data } = await http.get(`/posts/${query.postSlug}`, {
         //this is for send cookie to backend to backend know the user 
-        withCredentials: true,
         headers: {
             Cookie: ctx.req.headers.cookie || ""
         }

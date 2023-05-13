@@ -5,8 +5,6 @@ import * as Yup from "yup";
 import Input from "@/components/FormInput";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-// import axios from "axios";
-// import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 import { useAuth } from "@/context/AuthContext";
 import { useEffect } from "react";

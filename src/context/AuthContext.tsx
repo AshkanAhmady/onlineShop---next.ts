@@ -1,4 +1,4 @@
-import axios from "axios";
+import http from "@/services/httpService";
 import Router from "next/router";
 import { createContext, useContext, useEffect } from "react";
 import { toast } from "react-hot-toast";
@@ -26,7 +26,7 @@ const reducer = (state: any, action: any) => {
 const asyncActionHandlers: any = {
     SIGNIN: ({ dispatch }: any) => (action: any) => {
         dispatch({ type: "SIGNIN_PENDING" })
-        axios.post("http://localhost:5000/api/user/signin", action.payload, { withCredentials: true })
+        http.post("/user/signin", action.payload)
             .then(({ data }) => {
                 toast.success("با موفقیت وارد شدید")
                 dispatch({ type: "SIGNIN_SUCCESS", payload: data })
@@ -39,7 +39,7 @@ const asyncActionHandlers: any = {
     },
     SIGNUP: ({ dispatch }: any) => (action: any) => {
         dispatch({ type: "SIGNIN_PENDING" })
-        axios.post("http://localhost:5000/api/user/signup", action.payload, { withCredentials: true })
+        http.post("/user/signup", action.payload)
             .then(({ data }) => {
                 toast.success("ثبت نام با موفقیت انجام شد")
                 dispatch({ type: "SIGNIN_SUCCESS", payload: data })
@@ -51,7 +51,7 @@ const asyncActionHandlers: any = {
             })
     },
     SIGNOUT: ({ dispatch }: any) => (action: any) => {
-        axios.get("http://localhost:5000/api/user/logout", { withCredentials: true })
+        http.get("/user/logout")
             .then(() => {
                 // first way
                 // dispatch({ type: "CLEAR_USER_DATA" })
@@ -64,7 +64,7 @@ const asyncActionHandlers: any = {
     // get user data after page is refreshad
     LOAD_USER: ({ dispatch }: any) => (action: any) => {
         dispatch({ type: "SIGNIN_PENDING" })
-        axios.get("http://localhost:5000/api/user/load", { withCredentials: true })
+        http.get("/user/load")
             .then(({ data }) => {
                 dispatch({ type: "SIGNIN_SUCCESS", payload: data })
             })
