@@ -5,6 +5,9 @@ import * as Yup from "yup";
 import Input from "@/components/FormInput";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
+import { useAuth } from "@/context/AuthContext";
+import { useEffect } from "react";
 
 const formSchema = Yup.object().shape({
     name: Yup.string()
@@ -26,9 +29,16 @@ const formSchema = Yup.object().shape({
 
 const SingUp = () => {
     const { register, handleSubmit, formState: { errors, isValid } }: LoginHookFormType = useForm({ mode: "onTouched", resolver: yupResolver(formSchema) });
+    const router = useRouter()
+    const { userContext, setUserContext } = useAuth()
+
+    useEffect(() => {
+        if (userContext.user) router.push("/")
+    }, [userContext])
 
     const onSubmit = (data: RegisterDataType) => {
-        console.log(data)
+        delete data['confirmPassword']
+        setUserContext({ type: "SIGNUP", payload: data })
     };
 
     return (

@@ -141,7 +141,13 @@ export default SinglePostPage;
 
 export async function getServerSideProps(ctx: any) {
     const { query } = ctx
-    const { data } = await axios.get(`http://localhost:5000/api/posts/${query.postSlug}`)
+    const { data } = await axios.get(`http://localhost:5000/api/posts/${query.postSlug}`, {
+        //this is for send cookie to backend to backend know the user 
+        withCredentials: true,
+        headers: {
+            Cookie: ctx.req.headers.cookie || ""
+        }
+    })
 
     return {
         props: {

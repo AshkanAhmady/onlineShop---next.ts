@@ -36,7 +36,13 @@ export default CategoryPage
 export async function getServerSideProps(ctx: any) {
     const { query } = ctx
     const querys = queryString.stringify(query)
-    const { data: blogsData } = await axios.get(`http://localhost:5000/api/posts?${querys}`)
+    const { data: blogsData } = await axios.get(`http://localhost:5000/api/posts?${querys}`, {
+        //this is for send cookie to backend to backend know the user 
+        withCredentials: true,
+        headers: {
+            Cookie: ctx.req.headers.cookie || ""
+        }
+    })
     const { data: categoryData } = await axios.get("http://localhost:5000/api/post-category")
 
     return {

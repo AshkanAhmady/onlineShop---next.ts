@@ -4,6 +4,9 @@ import {
   UseFormRegister,
 } from "react-hook-form";
 
+export interface ChildsComponentsType {
+  children: React.ReactNode;
+}
 export interface SingleBlogType {
   status: number;
   commentsCount: number;
@@ -120,11 +123,13 @@ export interface LoginHookFormType {
       };
 }
 
-// export interface RegisterDataType {
-//   confirmPassword?: string;
-//   email: string;
-//   password: string;
-// }
+export interface RegisterDataType {
+  confirmPassword?: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  password: string;
+}
 
 export interface LoginDataType {
   email: string;
@@ -137,4 +142,10 @@ export interface InputPropsType {
   type: string;
   error: string;
   validation: any;
+}
+
+export interface AuthContextStateType {
+  user: any | null;
+  loading: boolean;
+  error: any | null;
 }

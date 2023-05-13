@@ -5,9 +5,11 @@ import * as Yup from "yup";
 import Input from "@/components/FormInput";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import { toast } from "react-hot-toast";
+// import axios from "axios";
+// import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
+import { useAuth } from "@/context/AuthContext";
+import { useEffect } from "react";
 
 const formSchema = Yup.object().shape({
     email: Yup.string()
@@ -20,14 +22,14 @@ const formSchema = Yup.object().shape({
 const SingIn = () => {
     const { register: login, handleSubmit, formState: { errors, isValid } }: LoginHookFormType = useForm({ mode: "onTouched", resolver: yupResolver(formSchema) });
     const router = useRouter()
+    const { userContext, setUserContext } = useAuth()
+
+    useEffect(() => {
+        if (userContext.user) router.push("/")
+    }, [userContext])
 
     const onSubmit = (data: LoginDataType) => {
-        axios.post("http://localhost:5000/api/user/signin", data, { withCredentials: true })
-            .then(res => {
-                toast.success("با موفقیت وارد شدید")
-                router.push("/")
-            })
-            .catch(err => toast.error(err?.response?.data?.message))
+        setUserContext({ type: "SIGNIN", payload: data })
     };
 
     return (

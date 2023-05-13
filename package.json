@@ -23,6 +23,7 @@
     "react-hook-form": "^7.43.9",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.8.0",
+    "use-reducer-async": "^2.1.1",
     "yup": "^1.1.1"
   },
   "devDependencies": {
