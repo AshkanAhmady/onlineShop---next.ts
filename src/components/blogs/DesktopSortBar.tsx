@@ -1,6 +1,25 @@
+import routerPush from '@/utils/routerPush'
 import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+
+
+const sortList = [
+    { label: "پربازدید ترین", id: "most" },
+    { label: "جدید ترین", id: "newest" },
+    { label: "محبوب ترین", id: "popular" },
+]
 
 const DesktopSortBar = () => {
+    const router = useRouter()
+    const [sort, setSort] = useState(router.query.sort || "newest")
+
+    const sortHandler = (id: string) => {
+        router.query.sort = id
+        routerPush(router)
+        setSort(id)
+    }
+
     return (
         <div className='rounded-3xl bg-white px-4 flex items-center'>
             <div className='flex items-center gap-2'>
@@ -8,9 +27,13 @@ const DesktopSortBar = () => {
                 <span className='text-gray-700'>مرتب سازی:</span>
             </div>
             <ul className='flex items-center gap-4 mr-3'>
-                <li className='text-gray-700 cursor-pointer py-3' >پر بازید ترین</li>
-                <li className='text-gray-700 cursor-pointer py-3' >جدید ترین</li>
-                <li className='text-gray-700 cursor-pointer py-3' >محبوب ترین</li>
+                {sortList.map(({ label, id }) => {
+                    return <li onClick={() => sortHandler(id)} key={id} className={`${id === sort ? "text-purple-500" : "text-gray-700"} duration-300 relative cursor-pointer py-3`} >
+                        {label}
+                        <span className={`${id === sort ? "opacity-100" : "opacity-0"} duration-300 h-[3px] absolute bottom-0 right-0 bg-purple-500 w-8`}></span>
+                    </li>
+                })
+                }
             </ul>
         </div>
 
