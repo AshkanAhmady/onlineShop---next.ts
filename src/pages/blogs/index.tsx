@@ -9,7 +9,7 @@ import http from '@/services/httpService'
 const BlogsPage = ({ blogsData, categoryData }: indexPropsType) => {
 
     return (
-        <div className="container mx-auto lg:max-w-screen-xl px-4 md:px-0">
+        <div className="container mx-auto lg:max-w-screen-xl">
             <div className='flex md:hidden gap-x-4 overflow-scroll pb-4'>
                 <MobileCategory categoryData={categoryData} />
             </div>

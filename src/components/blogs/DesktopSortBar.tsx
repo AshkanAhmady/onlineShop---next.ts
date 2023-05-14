@@ -15,7 +15,10 @@ const DesktopSortBar = () => {
     const [sort, setSort] = useState(router.query.sort || "newest")
 
     const sortHandler = (id: string) => {
+        // add new query that name is sort
         router.query.sort = id
+        // reload page and add query to url
+        // when page reloaded, SSR in blogs/index page run again
         routerPush(router)
         setSort(id)
     }

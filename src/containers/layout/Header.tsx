@@ -4,10 +4,8 @@ import Link from "next/link";
 const Header = () => {
     const { userContext, setUserContext } = useAuth()
 
-
-
     return (
-        <header className="bg-white shadow-md py-2 mb-8">
+        <header className="bg-white shadow-md py-2 mb-4 md:mb-8">
             <div className={`container mx-auto xl:max-w-screen-xl duration-150 ${userContext.loading ? "opacity-0" : "opacity-100"}`}>
                 <nav className="flex justify-between">
                     <ul className="flex items-center gap-x-5">
