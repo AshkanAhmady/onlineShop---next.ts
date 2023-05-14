@@ -9,7 +9,7 @@ const DesktopCategory = ({ categoryData }: CategoryListPropsType) => {
     const { query } = useRouter()
 
     return (
-        <div className='bg-purple-400 overflow-hidden rounded-3xl'>
+        <div className='bg-purple-400 overflow-hidden rounded-3xl sticky top-20'>
             {/* accordion header */}
             <div onClick={() => setIsShowCategories(!isShowCategories)} className='flex justify-between items-center p-4 cursor-pointer'>
                 <span className='text-white'>دسته بندی مقالات</span>

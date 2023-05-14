@@ -5,6 +5,7 @@ import DesktopSortBar from '@/components/blogs/DesktopSortBar'
 import BlogList from '@/components/blogs/BlogList'
 import queryString from 'query-string'
 import http from '@/services/httpService'
+import PaginationComponent from '@/common/Pagination'
 
 const CategoryPage = ({ blogsData, categoryData }: indexPropsType) => {
 
@@ -24,6 +25,7 @@ const CategoryPage = ({ blogsData, categoryData }: indexPropsType) => {
                     </div>
                     <div className=' md:col-span-9 grid items-start gap-8 grid-cols-6'>
                         <BlogList blogsData={blogsData.docs} />
+                        <PaginationComponent totalPages={blogsData.totalPages} page={blogsData.page} />
                     </div>
                 </div>
             </div>

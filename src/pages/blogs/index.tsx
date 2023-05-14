@@ -6,7 +6,12 @@ import BlogList from '@/components/blogs/BlogList'
 import queryString from 'query-string'
 import http from '@/services/httpService'
 
+import { useRouter } from 'next/router'
+import routerPush from '@/utils/routerPush'
+import PaginationComponent from '@/common/Pagination'
+
 const BlogsPage = ({ blogsData, categoryData }: indexPropsType) => {
+
 
     return (
         <div className="container mx-auto lg:max-w-screen-xl">
@@ -23,6 +28,7 @@ const BlogsPage = ({ blogsData, categoryData }: indexPropsType) => {
                 </div>
                 <div className=' md:col-span-9 grid items-start gap-8 grid-cols-6'>
                     <BlogList blogsData={blogsData.docs} />
+                    <PaginationComponent totalPages={blogsData.totalPages} page={blogsData.page} />
                 </div>
             </div>
         </div>

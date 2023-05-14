@@ -6,7 +6,6 @@ import CommentForm from "./CommmentForm";
 const SingleComment = ({ comment }: CommentPropsType) => {
     const [onReply, setOnReplay] = useState<boolean>(false)
     const [persianTime, setPersianTime] = useState<string | null>(null)
-    const [commentValue, setCommentValue] = useState<string | number | readonly string[] | undefined>(undefined)
 
 
     useEffect(() => {
@@ -31,7 +30,7 @@ const SingleComment = ({ comment }: CommentPropsType) => {
             {/* replay form */}
             {onReply && <div className="mt-8">
                 <span className="font-bold md:text-lg">در پاسخ به {comment.writer.name}</span>
-                <CommentForm comment={commentValue} setComment={setCommentValue} />
+                <CommentForm postId={comment.postId} responseTo={comment._id} setOnReplay={setOnReplay} />
             </div>}
         </div>
     );

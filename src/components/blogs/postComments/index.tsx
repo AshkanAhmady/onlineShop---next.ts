@@ -5,7 +5,6 @@ import ReplayComment from "./ReplayComment";
 import SingleComment from "./SingleComment";
 
 const PostComments = ({ post }: SinglePostPropsType) => {
-    const [comment, setComment] = useState<string | number | readonly string[] | undefined>(undefined)
     return (
         <div>
             <h2>نظرات</h2>
@@ -19,7 +18,7 @@ const PostComments = ({ post }: SinglePostPropsType) => {
             {/* base comment form */}
             <div className="mt-8">
                 <span className="font-bold md:text-lg">ارسال نظر جدید</span>
-                <CommentForm comment={comment} setComment={setComment} />
+                <CommentForm postId={post._id} responseTo={null} setOnReplay={null} />
             </div>
         </div>
     );
