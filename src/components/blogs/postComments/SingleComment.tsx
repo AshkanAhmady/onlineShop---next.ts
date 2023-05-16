@@ -13,22 +13,22 @@ const SingleComment = ({ comment }: CommentPropsType) => {
     }, [comment])
 
     return (
-        <div className="border shadow-md rounded-xl border-gray-300 mt-8 p-4 md:p-8 ">
-            <div className="flex items-center justify-start gap-x-4 ">
-                <UserCircleIcon className="h-12 w-12 stroke-gray-400" strokeWidth={1} />
-                <div className="flex flex-col justify-between mr-4">
+        <div className="border shadow-md rounded-xl border-gray-300 mt-8 overflow-hidden">
+            <div className="flex items-center justify-start gap-x-2 bg-gray-100 p-1">
+                <UserCircleIcon className="h-10 w-10 stroke-gray-400" strokeWidth={1} />
+                <div className="flex flex-col justify-between">
                     <span className="block text-sm text-gray-600">{comment.writer?.name}</span>
                     <span className="block text-xs text-gray-500 mt-2 dark:text-slate-500">{persianTime}</span>
                 </div>
             </div>
-            <div className="mt-4 leading-10">
+            <div className="mt-4 leading-10 px-4">
                 {comment.content}
             </div>
-            <button className="text-sm p-4 cursor-pointer text-blue-600" onClick={() => setOnReplay(!onReply)}>
+            <button className="text-sm px-4 pb-4 cursor-pointer text-blue-600" onClick={() => setOnReplay(!onReply)}>
                 {!onReply ? "پاسخ به" : "بیخیال"}
             </button>
             {/* replay form */}
-            {onReply && <div className="mt-8">
+            {onReply && <div className=" p-4">
                 <span className="font-bold md:text-lg">در پاسخ به {comment.writer.name}</span>
                 <CommentForm postId={comment.postId} responseTo={comment._id} setOnReplay={setOnReplay} />
             </div>}

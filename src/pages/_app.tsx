@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import Layout from '@/containers/layout/Index'
 import { Toaster } from 'react-hot-toast';
 import AuthProvider from '@/context/AuthContext';
+import { wrapper } from 'src/redux/store';
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -16,4 +17,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp)

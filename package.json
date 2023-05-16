@@ -19,6 +19,7 @@
     "axios": "^1.4.0",
     "jalali-moment": "^3.3.11",
     "next": "13.3.4",
+    "next-redux-wrapper": "^8.1.0",
     "query-string": "^8.1.0",
     "react": "18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
@@ -26,6 +27,10 @@
     "react-hook-form": "^7.43.9",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.8.0",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
     "use-reducer-async": "^2.1.1",
     "yup": "^1.1.1"
   },
