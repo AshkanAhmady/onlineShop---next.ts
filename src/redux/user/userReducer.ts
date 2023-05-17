@@ -7,20 +7,30 @@ import {
   SIGNUP_USER_SUCCESS,
 } from "./userTypes";
 
-export const userSignInReducer = (state = {}, action: any) => {
+const initialState = {
+  loading: true,
+  user: null,
+  error: null,
+};
+
+export const userSignInReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SIGNIN_USER_REQUEST:
       return {
         loading: true,
+        user: null,
+        error: null,
       };
     case SIGNIN_USER_SUCCESS:
       return {
         loading: false,
         user: action.payload,
+        error: null,
       };
     case SIGNIN_USER_FAILURE:
       return {
         loading: false,
+        user: null,
         error: action.payload,
       };
     default:
@@ -28,21 +38,25 @@ export const userSignInReducer = (state = {}, action: any) => {
   }
 };
 
-export const userSignUpReducer = (state = {}, action: any) => {
+export const userSignUpReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SIGNUP_USER_REQUEST:
       return {
         loading: true,
+        user: null,
+        error: null,
       };
     case SIGNUP_USER_SUCCESS:
       return {
         loading: false,
         user: action.payload,
+        error: null,
       };
     case SIGNUP_USER_FAILURE:
       return {
         loading: false,
         error: action.payload,
+        user: null,
       };
     default:
       return state;

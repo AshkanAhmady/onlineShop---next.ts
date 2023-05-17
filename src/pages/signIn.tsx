@@ -6,8 +6,10 @@ import Input from "@/components/FormInput";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import { useAuth } from "@/context/AuthContext";
+// import { useAuth } from "@/context/AuthContext";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userSignIn } from "src/redux/user/actions";
 
 const formSchema = Yup.object().shape({
     email: Yup.string()
@@ -20,14 +22,15 @@ const formSchema = Yup.object().shape({
 const SingIn = () => {
     const { register: login, handleSubmit, formState: { errors, isValid } }: LoginHookFormType = useForm({ mode: "onTouched", resolver: yupResolver(formSchema) });
     const router = useRouter()
-    const { userContext, setUserContext } = useAuth()
+    const dispatch: any = useDispatch()
+    const { user } = useSelector((state: any) => state.userSignIn)
 
     useEffect(() => {
-        if (userContext.user) router.push("/")
-    }, [userContext])
+        if (user) router.push("/")
+    }, [user])
 
     const onSubmit = (data: LoginDataType) => {
-        setUserContext({ type: "SIGNIN", payload: data })
+        dispatch(userSignIn(data))
     };
 
     return (

@@ -1,12 +1,15 @@
-import { useAuth } from "@/context/AuthContext";
+import { useSelector, useDispatch } from "react-redux"
 import Link from "next/link";
+import { signOut } from "src/redux/user/actions";
 
 const Header = () => {
-    const { userContext, setUserContext } = useAuth()
+    const dispatch: any = useDispatch()
+    const { user, loading } = useSelector((state: any) => state.userSignIn)
+
 
     return (
         <header className="bg-white shadow-md py-2 mb-4 md:mb-8 sticky top-0 z-40">
-            <div className={`container mx-auto xl:max-w-screen-xl duration-150 ${userContext.loading ? "opacity-0" : "opacity-100"}`}>
+            <div className={`container mx-auto xl:max-w-screen-xl duration-150 ${loading ? "opacity-0" : "opacity-100"}`}>
                 <nav className="flex justify-between">
                     <ul className="flex items-center gap-x-5">
                         <li>
@@ -18,9 +21,9 @@ const Header = () => {
                     </ul>
                     <div className="flex items-center gap-x-4">
                         {
-                            userContext.user
+                            user
                                 ? <>
-                                    <button onClick={() => setUserContext({ type: "SIGNOUT" })} className="bg-red-400 px-2 py-1 rounded-lg text-white">خروج</button>
+                                    <button onClick={() => dispatch(signOut())} className="bg-red-400 px-2 py-1 rounded-lg text-white">خروج</button>
                                     <Link className="py-2 block" href="/profile">پروفایل</Link>
                                 </>
                                 : <>

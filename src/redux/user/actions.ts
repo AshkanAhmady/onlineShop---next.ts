@@ -1,8 +1,11 @@
 import http from "@/services/httpService";
+import Router from "next/router";
+import { toast } from "react-hot-toast";
 import {
   SIGNIN_USER_FAILURE,
   SIGNIN_USER_REQUEST,
   SIGNIN_USER_SUCCESS,
+  SIGNOUT_USER,
   SIGNUP_USER_FAILURE,
   SIGNUP_USER_REQUEST,
   SIGNUP_USER_SUCCESS,
@@ -55,9 +58,16 @@ export const userSignIn = (data: any) => {
       .post("/user/signin", data)
       .then((res) => {
         dispatch(signInUserSuccess(res.data));
+        toast.success("با موفقیت وارد شدید");
+        Router.push("/");
       })
       .catch((err) => {
-        dispatch(signInUserFailure(err.message));
+        const errorMessage =
+          err.response && err?.response?.data?.message
+            ? err?.response?.data?.message
+            : err.message;
+        toast.error(errorMessage);
+        dispatch(signInUserFailure(errorMessage));
       });
   };
 };
@@ -69,9 +79,39 @@ export const userSignUp = (data: any) => {
       .post("/user/signup", data)
       .then((res) => {
         dispatch(signUpUserSuccess(res.data));
+        dispatch(signInUserSuccess(res.data));
+        toast.success("ثبت نام با موفقیت انجام شد");
+        Router.push("/");
       })
       .catch((err) => {
-        dispatch(signUpUserFailure(err.message));
+        const errorMessage =
+          err.response && err?.response?.data?.message
+            ? err?.response?.data?.message
+            : err.message;
+        toast.error(errorMessage);
+        dispatch(signInUserFailure(errorMessage));
       });
   };
+};
+
+export const signOut = () => {
+  return (dispatch: any) => {
+    dispatch({ type: SIGNOUT_USER });
+    //  we can remove user from localStorage
+    http
+      .get("/user/logout")
+      .then(() => {
+        window.location.href = "/";
+      })
+      .catch();
+  };
+};
+
+export const loadUser = (store: any) => {
+  http
+    .get("/user/load")
+    .then(({ data }) => {
+      store.dispatch(signInUserSuccess(data));
+    })
+    .catch((err) => {});
 };
